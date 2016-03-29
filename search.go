@@ -36,7 +36,7 @@ func (sa searchAction) GetUrlMethod(methodName, method string) REST.UrlMethod {
 	return nil
 }
 
-func (sa searchAction) GetMetadata() *Metadata {
+func (sa searchAction) GetMetadata() *REST.Metadata {
 	return nil
 }
 

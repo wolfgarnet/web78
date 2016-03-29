@@ -25,7 +25,9 @@ func (r *themeAction) UrlName() string {
 func (r *themeAction) Autonomize(context *REST.Context) (response.Response, error)  {
 	//log.Printf("--->%v", context.Request.URL)
 	p := context.Request.URL.String()[6:len(context.Request.URL.String())]
-	path := "themes/" + context.Session.ThemeName + "/" + context.Session.PlatformName + p
+	theme := context.Session.Get("theme", "default")
+	platform := context.Session.Get("platform", "desktop")
+	path := "themes/" + theme + "/" + platform + p
 	log.Printf("P: %v, %v", p, path)
 	//path :=
 	//return response.NewFileResponse("themes/default/desktop/style.css")
@@ -36,7 +38,7 @@ func (r themeAction) String() string {
 	return "Theme action"
 }
 
-func (r themeAction) GetMetadata() *Metadata {
+func (r themeAction) GetMetadata() *REST.Metadata {
 	return nil
 }
 

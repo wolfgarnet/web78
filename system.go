@@ -8,6 +8,7 @@ import (
 	"github.com/wolfgarnet/logging"
 	"web/core/registry"
 	"github.com/wolfgarnet/REST"
+	"net/http"
 )
 
 var logger logging.Logger
@@ -128,6 +129,17 @@ func (system *System) GetId(t string) string {
 
 func (system *System) Check() string {
 	return "SANITY CHECK"
+}
+
+
+func (system *System) NewSession(request *http.Request) *REST.Session {
+	data := map[string]string{
+		"theme": "default",
+		"platform": "desktop",
+		"style": "default",
+	}
+	sc := &REST.Session{nil, data}
+	return sc
 }
 
 var system *System
